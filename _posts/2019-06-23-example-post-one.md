@@ -1,7 +1,7 @@
 ---
-title: [Spring]01.Autowired 어노테이션
+title: 01.Autowired 어노테이션
 categories:
-- Spring
+- General
 feature_image: "https://picsum.photos/2560/600?image=872"
 ---
 

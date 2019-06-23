@@ -1,14 +1,38 @@
 ---
-title: Description of an Alembic
+title: [Spring]01.@
 categories:
-- General
+- Spring
 feature_image: "https://picsum.photos/2560/600?image=872"
 ---
 
-The complete distilling apparatus consists of three parts: the "cucurbit" (Arabic ḳarʿa, Greek βίκος), the still pot containing the liquid to be distilled, which is heated by a flame; the "head" or "cap" (Arabic anbiḳ, Greek ἄμβιξ) which fits over the mouth of the cucurbit to receive the vapors, with an attached downward-sloping "tube" (Greek σωλήν), leading to the "receiver" (Arabic ḳābila, Greek ἄγγος or φιάλη) container.
+@Autowired 어노테이션을 적용하면 반드시 주입할 의존 객체가 존재해야 한다. 
 
-<!-- more -->
+만약 xml 설정파일에 해당하는 객체가 존재하지 않으면, @Autowired가 적용된 대상에 주입할 객체를 찾을 수 없기 때문에 Exception이 발생한다.
 
-Retorts have the "cap" and the "cucurbit" made into one. The anbik is also called the raʾs (head) of the cucurbit. The liquid in the cucurbit is heated or boiled; the vapour rises into the anbik, where it cools by contact with the walls and condenses, running down the spout into the receiver. A modern descendant of the alembic is the pot still, used to produce distilled beverages.
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: 
+    Error creating bean with name 'userRepositoryUserDetailsService' defined in file 
+    [../UserRepositoryUserDetailsService.class]: 
+    Unsatisfied dependency expressed through constructor argument with index 0 of type 
+[org.cru.cloud.management.data.UserRepository]: : No qualifying bean of 
+    type [org.cru.cloud.management.data.UserRepository] found for dependency: 
+        expected at least 1 bean which qualifies 
+        as autowire candidate for this dependency. 
+.....
+Colored by Color Scripter
+cs
 
-_Originally from [Alembic - Wikipedia](https://en.wikipedia.org/wiki/Alembic)_
+
+@Autowired 어노테이션에 require 속성을 이용해, 대상에 꼭 의존 객체를 주입하지 않아도 된다고 설정할 수 있다. 
+
+1
+@Autowired(require=false)
+cs
+
+
+이 경우 @Autowired 어노테이션이 적용된 대상에 주입할 의존 객체가 없더라도 required=false이기 때문에 스프링 컨테이너를 생성하는 과정에서 Exception을 발생시키지 않는다. (대신 null이 됨)
+
+
+
+required=false인 경우 의존 객체가 주입되지 않는 것이 아니다. 
+
+주입할 의존 객체가 존재하면 해당 객체는 @Autowired 적용 대상에 주입되는 것은 같지만 required=false인 경우 주입할 의존 객체가 존재하지 않아도 Exception을 발생시키지 않는다. 

@@ -1,5 +1,5 @@
 ---
-title: [Spring]01.@Autowired 어노테이션
+title: [Spring]01.Autowired 어노테이션
 categories:
 - Spring
 feature_image: "https://picsum.photos/2560/600?image=872"
